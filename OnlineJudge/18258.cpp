@@ -4,9 +4,12 @@ using namespace std;
 
 int main()
 {
+	// 아래의 두 구문을 사용할 경우 주의점
+	// https://hyun-jun5.tistory.com/17
+	/*
 	cin.tie(0);
-	cin.sync_with_stdio(0);
-
+	ios_base::sync_with_stdio(0);
+	*/
 	int cnt, num;
 	string s;
 	queue<int> _queue;
