@@ -10,19 +10,19 @@ int main()
     cout.tie(NULL);
 
     int degree[32000] = { 0 };
-    vector<int> vt[32000];
+    vector<int> vec[32000];
     priority_queue<int, vector<int>, greater<int>> pq;
-    int n, m;
-    cin >> n >> m;
+    int N, M;
+    cin >> N >> M;
 
-    for (int i = 1; i <= m; i++) {
+    for (int i = 1; i <= M; i++) {
         int a, b;
         cin >> a >> b;
         degree[b]++;
-        vt[a].push_back(b);
+        vec[a].push_back(b);
     }
 
-    for (int i = 1; i <= n; i++) {
+    for (int i = 1; i <= N; i++) {
 
         if (degree[i] == 0) {
             pq.push(i);
@@ -35,9 +35,9 @@ int main()
         pq.pop();
         cout << qNum << ' ';
 
-        for (int i = 0; i < vt[qNum].size(); i++) {
+        for (int i = 0; i < vec[qNum].size(); i++) {
 
-            int next = vt[qNum][i];
+            int next = vec[qNum][i];
 
             if (--degree[next] == 0) {
                 pq.push(next);
