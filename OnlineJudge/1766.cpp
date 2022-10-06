@@ -3,17 +3,14 @@
 #include<vector>
 using namespace std;
 
-const int MAX = 32001;
-
-
-
-int main() {
+int main() 
+{
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int inDegree[MAX] = { 0 };
-    vector<int> vt[MAX];
+    int degree[32000] = { 0 };
+    vector<int> vt[32000];
     priority_queue<int, vector<int>, greater<int>> pq;
     int n, m;
     cin >> n >> m;
@@ -21,36 +18,30 @@ int main() {
     for (int i = 1; i <= m; i++) {
         int a, b;
         cin >> a >> b;
-        inDegree[b]++;
+        degree[b]++;
         vt[a].push_back(b);
     }
 
     for (int i = 1; i <= n; i++) {
 
-        if (inDegree[i] == 0) {
+        if (degree[i] == 0) {
             pq.push(i);
         }
 
     }
-    while (!pq.empty()) {
-
-        int here = pq.top();
+    while (!pq.empty()) 
+    {
+        int qNum = pq.top();
         pq.pop();
-        cout << here << ' ';
+        cout << qNum << ' ';
 
-        for (int i = 0; i < vt[here].size(); i++) {
+        for (int i = 0; i < vt[qNum].size(); i++) {
 
-            int next = vt[here][i];
+            int next = vt[qNum][i];
 
-            if (--inDegree[next] == 0) {
+            if (--degree[next] == 0) {
                 pq.push(next);
             }
         }
-
     }
-
-
-
-
-    return 0;
 }
