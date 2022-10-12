@@ -1,57 +1,58 @@
-#include<iostream>
-#include<set>
+#include <iostream>
+#include <set>
+
 using namespace std;
 
-int main() {
+int main()
+{
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(0);
 
-    int t, k;
-    cin >> t;
+    int T, K;
 
-    while (t--) {
-        cin >> k;
-        multiset<int> s;
-        while (k--) {
-            char order;
-            int input;
-            cin >> order >> input;
-            if (s.empty()) {
-                if (order == 'I') {//삽입
-                    s.insert(input);
-                }
+    cin >> T;
+    
+    while (T > 0)
+    {
+        multiset<int> m;
+        T--;
+        cin >> K;
 
+        for (int i = 0; i < K; i++)
+        {
+            char c;
+            int n;
+
+            cin >> c >> n;
+
+            if (m.empty()) 
+            {
+                if (c == 'I') 
+                    m.insert(n);
             }
-            else {
-                if (order == 'I') {//삽입
-
-                    s.insert(input);
-
-                }
-                else {//삭제
-                    if (input == 1) {//최댓값삭제
-                        s.erase(--s.end());
-                    }
+            else
+            {
+                if (c == 'I') 
+                    m.insert(n);
+                else 
+                {
+                    if (n == 1) 
+                        m.erase(--m.end());
                     else {
-                        s.erase(s.begin());
+                        m.erase(m.begin());
                     }
                 }
             }
-
-
         }
 
-        if (s.empty())
+        if (m.empty())
             cout << "EMPTY" << '\n';
-        else {
-            auto max = --s.end(), min = s.begin();
+        else 
+        {
+            auto max = --m.end();
+            auto min = m.begin();
             cout << *max << ' ' << *min << '\n';
         }
-        //출력부분
     }
-
-
-
-    return 0;
 }
