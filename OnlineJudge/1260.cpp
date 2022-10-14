@@ -6,23 +6,28 @@ using namespace std;
 
 int line[1001][1001];
 int visited[1001];
-int n, m, v;
+int N, M, V;
+
 queue<int> q;
 stack<int> stk;
-void dfs(int idx) {
+void DFS(int idx) 
+{
 
     stk.push(idx);
 
 
-    while (!stk.empty()) {
+    while (!stk.empty()) 
+    {
         idx = stk.top();
 
         stk.pop();
         if (!visited[idx])
             cout << idx << ' ';
         visited[idx] = 1;
-        for (int i = n; i > 0; i--) {
-            if (line[idx][i] && !visited[i]) {
+        for (int i = N; i > 0; i--) 
+        {
+            if (line[idx][i] && !visited[i]) 
+            {
                 stk.push(i);
             }
         }
@@ -31,11 +36,13 @@ void dfs(int idx) {
 
 }
 
-void bfs(int idx) {
+void BFS(int idx) 
+{
 
     q.push(idx);
 
-    while (!q.empty()) {
+    while (!q.empty()) 
+    {
 
         idx = q.front();
 
@@ -43,8 +50,10 @@ void bfs(int idx) {
 
         cout << idx << ' ';
 
-        for (int i = 1; i <= n; i++) {
-            if (line[idx][i] && !visited[i]) {
+        for (int i = 1; i <= N; i++) 
+        {
+            if (line[idx][i] && !visited[i]) 
+            {
                 q.push(i);
                 visited[i] = 1;
             }
@@ -55,27 +64,30 @@ void bfs(int idx) {
 
 
 }
-int main() {
+int main() 
+{
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    cin >> n >> m >> v;
+    cin >> N >> M >> V;
 
 
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < M; i++) 
+    {
         int from, to;
         cin >> from >> to;
         line[from][to] = 1;
         line[to][from] = 1;
     }
 
-    dfs(v);
+    DFS(V);
 
     cout << '\n';
+
     fill_n(visited, 1001, 0);
 
-    visited[v] = 1;
-    bfs(v);
+    visited[V] = 1;
+    BFS(V);
     return 0;
 }
