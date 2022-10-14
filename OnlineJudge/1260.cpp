@@ -5,30 +5,30 @@
 using namespace std;
 
 int line[1001][1001];
-int visited[1001];
+int isVisit[1001];
 int N, M, V;
 
-queue<int> q;
-stack<int> stk;
-void DFS(int idx) 
+queue<int> _q;
+stack<int> _stack;
+void DFS(int vertex_num)
 {
 
-    stk.push(idx);
+    _stack.push(vertex_num);
 
 
-    while (!stk.empty()) 
+    while (!_stack.empty())
     {
-        idx = stk.top();
+        vertex_num = _stack.top();
 
-        stk.pop();
-        if (!visited[idx])
-            cout << idx << ' ';
-        visited[idx] = 1;
+        _stack.pop();
+        if (!isVisit[vertex_num])
+            cout << vertex_num << ' ';
+        isVisit[vertex_num] = true;
         for (int i = N; i > 0; i--) 
         {
-            if (line[idx][i] && !visited[i]) 
+            if (line[vertex_num][i] && !isVisit[i])
             {
-                stk.push(i);
+                _stack.push(i);
             }
         }
 
@@ -36,34 +36,31 @@ void DFS(int idx)
 
 }
 
-void BFS(int idx) 
+void BFS(int vertex_num) 
 {
 
-    q.push(idx);
+    _q.push(vertex_num);
 
-    while (!q.empty()) 
+    while (!_q.empty()) 
     {
 
-        idx = q.front();
+        vertex_num = _q.front();
 
-        q.pop();
+        _q.pop();
 
-        cout << idx << ' ';
+        cout << vertex_num << ' ';
 
         for (int i = 1; i <= N; i++) 
         {
-            if (line[idx][i] && !visited[i]) 
+            if (line[vertex_num][i] && !isVisit[i])
             {
-                q.push(i);
-                visited[i] = 1;
+                _q.push(i);
+                isVisit[i] = true;
             }
         }
-
-
     }
-
-
 }
+
 int main() 
 {
     ios::sync_with_stdio(false);
@@ -85,9 +82,9 @@ int main()
 
     cout << '\n';
 
-    fill_n(visited, 1001, 0);
+    fill_n(isVisit, 1001, 0);
 
-    visited[V] = 1;
+    isVisit[V] = true;
     BFS(V);
     return 0;
 }
