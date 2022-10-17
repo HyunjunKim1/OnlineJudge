@@ -5,6 +5,7 @@
 using namespace std;
 int N, M;
 
+string maze[101];
 int _search[101][101];
 int _isVisit[101][101];
 
@@ -47,8 +48,6 @@ int main()
 
 	cin >> N >> M;
 
-	string* maze = new string[N];
-
 	for (int i = 0; i < N; i++)
 	{
 		cin >> maze[i];
@@ -67,6 +66,4 @@ int main()
 	//처음 방문 좌표 1,1은 탐색한거로 간주
 	_isVisit[1][1] = 1;
 	cout << BFS(1, 1) << "\n";
-
-	delete[] maze;
 }
