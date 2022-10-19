@@ -9,10 +9,9 @@ int main()
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	stack<int> s;
+	stack<long long> s;
 	int N, hi;
-	int fIdx = 0;
-	int total = 0;
+	long long total = 0;
 
 	cin >> N;
 
@@ -29,7 +28,7 @@ int main()
 		while (!s.empty() && s.top() <= hi)
 			s.pop();
 
-		total = total + s.size();
+		total += s.size();
 
 		s.push(hi);
 	}
