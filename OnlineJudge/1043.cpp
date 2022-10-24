@@ -89,5 +89,6 @@ int main()
         }
         cout << cnt << endl;
     }
+    test
     return 0;
 }
