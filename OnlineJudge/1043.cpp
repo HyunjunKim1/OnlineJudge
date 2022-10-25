@@ -87,7 +87,7 @@ int main()
             }
             on = 1;
         }
-        cout << cnt << endl;
+        cout << cnt << endl;1
     }
     return 0;
 }
