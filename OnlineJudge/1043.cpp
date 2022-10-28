@@ -1,93 +1,86 @@
 #include <iostream>
-// #include <unordered_set>
-#include <set>
-#include <algorithm> //sort
-#include <cstring>   //memset, use 0 or -1
-#define endl '\n'
+#include <queue>
+#include <vector>
+#include <algorithm>
+#include <cstring>
+
 using namespace std;
-// unordered_set<int> visited;
-set<int> visited;
-const int Max = 50 + 1;
-int n, m, t, k, pn, on, cnt;
-// int ppl[Max];
 
-struct meet
-{
-    unsigned int p1;
-    unsigned int p2;
-};
-typedef struct meet meet;
-meet meetings[Max - 1];
+int N, M;
+int t; // 진실 아는 사람의 수
+int tn; // 진실아는 사람의 넘버
+int p; // 파티 참석하는 사람중 진실을 아는사람
+bool _isTrueP[51];
+bool _isFalseP[51];
+vector<int> party[51];
+queue<int> q;
 
-//ppl who know the truth
-struct ppl
-{
-    unsigned int p1;
-    unsigned int p2;
-};
-typedef struct ppl ppl;
+int result;
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-    ppl ppl;
-    ppl.p1 = 0;
-    ppl.p2 = 0;
-    // meet meet;
+	cin >> N >> M;
 
-    cin >> n >> m >> t;
-    for (int i = 0; i < t; ++i)
-    {
-        cin >> pn;
-        if (pn < 32)
-            ppl.p1 |= 1 << pn;
-        else
-            ppl.p2 |= 1 << (pn - 32);
-    }
-    for (int j = 0; j < m; j++)
-    {
-        cin >> k;
-        for (int i = 0; i < k; i++)
-        {
-            cin >> pn;
-            if (pn < 32)
-                meetings[j].p1 |= 1 << pn;
-            else
-                meetings[j].p2 |= 1 << (pn - 32);
-        }
-    }
-    if (!t)
-        cout << m << endl;
-    else
-    {
-        while (visited.size() != m)
-        {
-            for (int i = 0; i < m; ++i)
-            {
-                // unsigned int& pplP1=ppl.p1;
-                // unsigned int& pplP2=ppl.p2;
-                auto met = visited.find(i);
-                if (met == visited.end())
-                {
-                    if (meetings[i].p1 & ppl.p1 || meetings[i].p2 & ppl.p2)
-                    {
-                        ppl.p1 |= meetings[i].p1;
-                        ppl.p2 |= meetings[i].p2;
-                        visited.insert(i);
-                        i = -1; //important!!!
-                    }
-                    else if (on)
-                    {
-                        cnt++;
-                        visited.insert(i);
-                    }
-                }
-            }
-            on = 1;
-        }
-        cout << cnt << endl;
-    }
-    return 0;
+	fill(_isTrueP, _isTrueP + 51, false);
+	fill(_isFalseP, _isFalseP + 51, false);
+
+	cin >> t;
+
+	// 진실을 아는사람 체크
+	for (int i = 0; i < t; i++)
+	{
+		cin >> tn;
+		_isTrueP[tn] = true;
+		q.push(tn);
+	}
+
+	// 파티 참석하는 사람체크
+	for (int i = 1; i <= M; i++)
+	{
+		cin >> tn;
+		for (int j = 0; j < tn; j++)
+		{
+			cin >> p;
+			party[i].push_back(p);
+		}
+	}
+
+	while (!q.empty())
+	{
+		p = q.front();
+		q.pop();
+
+		for (int i = 1; i <= M; i++)
+		{
+			if (find(party[i].begin(), party[i].end(), p) != party[i].end())
+			{
+				_isFalseP[i] = true;
+
+				/* 
+				 * 해당파티에 진실을 아는사람이 한명이라도 있는경우, 해당 파티인원들도 진실을 알기에
+				 * q에 삽입을해줌
+				 */
+				if (party[i].size() > 1) 
+				{
+					for (int j = 0; j < party[i].size(); j++)
+					{
+						if (!_isTrueP[party[i][j]])
+						{
+							_isTrueP[party[i][j]] = true;
+							q.push(party[i][j]);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	for (int i = 1; i <= M; i++)
+		if (!_isFalseP[i]) result++;
+
+	cout << result << endl;
 }
