@@ -1,84 +1,91 @@
-#include<iostream>
-#include<vector>
-#include<queue>
-#include<algorithm>
-
-#define endl "\n"
-#define MAX 1010
+#include <iostream>
+#include <stdio.h>
+#include <math.h>
+#include <cstring>
+#include <vector>
+#include <queue>
+#include <algorithm>
+#define MAX 1001
 #define INF 987654321
 using namespace std;
 
-int N, M, X, Answer;
-int Dist[MAX], Res[MAX];
-vector<pair<int, int>> V[MAX];
+int n, m, x;
+int u, v, w;
+int ans;
 
-void Input()
-{
-    cin >> N >> M >> X;
-    for (int i = 0; i < M; i++)
-    {
-        int a, b, c; cin >> a >> b >> c;
-        V[a].push_back(make_pair(b, c));
-    }
-}
+typedef pair<int, int> pii;
 
-void Dijkstra(int Start)
-{
-    priority_queue<pair<int, int>> PQ;
-    Dist[Start] = 0;
-    PQ.push(make_pair(0, Start));
+vector<pii> adj[MAX];
+vector<pii> r_adj[MAX];
 
-    while (PQ.empty() == 0)
-    {
-        int Cost = -PQ.top().first;
-        int Cur = PQ.top().second;
-        PQ.pop();
+void dijkstra(int s) {
+    vector<int> dist1(n + 1, INF);
+    vector<int> dist2(n + 1, INF);
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
 
-        for (int i = 0; i < V[Cur].size(); i++)
-        {
-            int Next = V[Cur][i].first;
-            int nCost = V[Cur][i].second;
+    // 목표 지점에서 돌아오는 길
+    pq.push(pii(0, s));
+    dist1[s] = 0;
+    while (!pq.empty()) {
+        int pre_d = pq.top().first;
+        int pre_v = pq.top().second;
+        pq.pop();
 
-            if (Dist[Next] > Cost + nCost)
-            {
-                Dist[Next] = Cost + nCost;
-                PQ.push(make_pair(-Dist[Next], Next));
+        if (pre_d > dist1[pre_v]) continue;
+
+        for (int i = 0; i < adj[pre_v].size(); i++) {
+            int nxt_v = adj[pre_v][i].first;
+            int cost = adj[pre_v][i].second;
+
+            if (dist1[nxt_v] > dist1[pre_v] + cost) {
+                dist1[nxt_v] = dist1[pre_v] + cost;
+                pq.push(pii(dist1[nxt_v], nxt_v));
             }
         }
     }
 
-}
+    // 목표 지점으로 가는길
+    pq.push(pii(0, s));
+    dist2[s] = 0;
 
-void Solution()
-{
-    for (int i = 1; i <= N; i++)
-    {
-        for (int j = 1; j <= N; j++) Dist[j] = INF;
-        Dijkstra(i);
-        Res[i] = Dist[X];
+    while (!pq.empty()) {
+        int pre_d = pq.top().first;
+        int pre_v = pq.top().second;
+        pq.pop();
+
+        if (pre_d > dist2[pre_v]) continue;
+
+        for (int i = 0; i < r_adj[pre_v].size(); i++) {
+            int nxt_v = r_adj[pre_v][i].first;
+            int cost = r_adj[pre_v][i].second;
+
+            if (dist2[nxt_v] > dist2[pre_v] + cost) {
+                dist2[nxt_v] = dist2[pre_v] + cost;
+                pq.push(pii(dist2[nxt_v], nxt_v));
+            }
+        }
     }
-    for (int j = 1; j <= N; j++) Dist[j] = INF;
-    Dijkstra(X);
-    for (int i = 1; i <= N; i++) Res[i] = Res[i] + Dist[i];
-    sort(Res + 1, Res + N + 1);
-    Answer = Res[N];
+
+    ans = 0;
+    for (int i = 1; i <= n; i++) {
+        int d = dist1[i] + dist2[i];
+        ans = max(ans, d);
+    }
+    cout << ans << endl;
 }
 
-void Solve()
-{
-    Input();
-    Solution();
-    cout << Answer << endl;
-}
+int main(int argc, const char* argv[]) {
+    // cin,cout 속도향상
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
 
-int main(void)
-{
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    cin >> n >> m >> x;
 
-    //freopen("Input.txt", "r", stdin);
-    Solve();
+    for (int i = 0; i < m; i++) {
+        cin >> u >> v >> w;
+        adj[u].push_back(pii(v, w));
+        r_adj[v].push_back(pii(u, w));
+    }
 
-    return 0;
+    dijkstra(x);
 }
