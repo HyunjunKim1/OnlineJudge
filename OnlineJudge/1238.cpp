@@ -49,7 +49,7 @@ void Dijkstra(int idx)
 
 int main()
 {
-	int result[1001];
+	int result[1001] = { 0, };
 	int ans = 0;
 
 	cin >> N >> M >> X;
