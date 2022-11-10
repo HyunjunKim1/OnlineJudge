@@ -1,91 +1,88 @@
 #include <iostream>
-#include <stdio.h>
-#include <math.h>
-#include <cstring>
-#include <vector>
 #include <queue>
 #include <algorithm>
-#define MAX 1001
-#define INF 987654321
+
 using namespace std;
 
-int n, m, x;
-int u, v, w;
-int ans;
+// 학생 수
+int N;
+// 도로 수
+int M;
+// 파티하는 마을
+int X;
+// 이동 최소거리 저장 
+int _distance[1001];
+// 오름차순 정렬 큐
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+vector<pair<int, int>> _vec[1001];
 
-typedef pair<int, int> pii;
 
-vector<pii> adj[MAX];
-vector<pii> r_adj[MAX];
+void Dijkstra(int idx)
+{
+	// init
+	fill(_distance, _distance + 1001, -1);
+	_distance[idx] = 0;
 
-void dijkstra(int s) {
-    vector<int> dist1(n + 1, INF);
-    vector<int> dist2(n + 1, INF);
-    priority_queue<pii, vector<pii>, greater<pii>> pq;
+	pq.push({ 0,idx });
 
-    // 목표 지점에서 돌아오는 길
-    pq.push(pii(0, s));
-    dist1[s] = 0;
-    while (!pq.empty()) {
-        int pre_d = pq.top().first;
-        int pre_v = pq.top().second;
-        pq.pop();
+	while (!pq.empty())
+	{
+		int d = pq.top().first;
+		int x = pq.top().second;
+		pq.pop();
 
-        if (pre_d > dist1[pre_v]) continue;
+		for (int i = 0; i < _vec[x].size(); i++)
+		{
+			int mx = _vec[x][i].first;
+			int md = _vec[x][i].second;
 
-        for (int i = 0; i < adj[pre_v].size(); i++) {
-            int nxt_v = adj[pre_v][i].first;
-            int cost = adj[pre_v][i].second;
-
-            if (dist1[nxt_v] > dist1[pre_v] + cost) {
-                dist1[nxt_v] = dist1[pre_v] + cost;
-                pq.push(pii(dist1[nxt_v], nxt_v));
-            }
-        }
-    }
-
-    // 목표 지점으로 가는길
-    pq.push(pii(0, s));
-    dist2[s] = 0;
-
-    while (!pq.empty()) {
-        int pre_d = pq.top().first;
-        int pre_v = pq.top().second;
-        pq.pop();
-
-        if (pre_d > dist2[pre_v]) continue;
-
-        for (int i = 0; i < r_adj[pre_v].size(); i++) {
-            int nxt_v = r_adj[pre_v][i].first;
-            int cost = r_adj[pre_v][i].second;
-
-            if (dist2[nxt_v] > dist2[pre_v] + cost) {
-                dist2[nxt_v] = dist2[pre_v] + cost;
-                pq.push(pii(dist2[nxt_v], nxt_v));
-            }
-        }
-    }
-
-    ans = 0;
-    for (int i = 1; i <= n; i++) {
-        int d = dist1[i] + dist2[i];
-        ans = max(ans, d);
-    }
-    cout << ans << endl;
+			// 처음 방문하거나, 큐에 있는 짧은 거리가 다음 방문할곳을 더한 거리보다 짧을 경우
+			if (_distance[mx] == -1 || _distance[mx] > d + md)
+			{
+				// 다음 방문 거리까지 더한 후 갱신
+				_distance[mx] = d + md;
+				pq.push({ _distance[mx], mx });
+			}
+		}
+	}
 }
 
-int main(int argc, const char* argv[]) {
-    // cin,cout 속도향상
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL); cout.tie(NULL);
+int main()
+{
+	int result[1001];
+	int ans = 0;
 
-    cin >> n >> m >> x;
+	cin >> N >> M >> X;
 
-    for (int i = 0; i < m; i++) {
-        cin >> u >> v >> w;
-        adj[u].push_back(pii(v, w));
-        r_adj[v].push_back(pii(u, w));
-    }
+	while (M--)
+	{
+		int s, e, t;
+		cin >> s >> e >> t;
+		// 시작위치에 끝점과 소요시간 저장
+		_vec[s].push_back({ e,t });
+	}
 
-    dijkstra(x);
+	// 시작 idx에서 X까지의 거리
+	for (int i = 1; i <= N; i++)
+	{
+		// 같은 위치인 경우 제외
+		if (i == X)
+			continue;
+		Dijkstra(i);
+		result[i] = _distance[X];
+	}
+
+	Dijkstra(X);
+
+	// 다시 돌아가는 거리 추가
+	for (int i = 1; i <= N; i++)
+	{
+		result[i] += _distance[i];
+	}
+
+
+	for (int i = 1; i <= N; i++)
+		ans = max(ans, result[i]);
+
+	cout << ans;
 }
