@@ -1,4 +1,4 @@
-// Mac test
+
 #include <iostream>
 #include <vector>
 #include <queue>
