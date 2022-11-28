@@ -66,15 +66,4 @@ int main()
     cout << "\n";
 
     postorder('A');
-
-    auto a_test;      // Error
-    auto a_test1 = 0; // Correct
-    a_test1 = 1;      // Error
-
-    for(auto i : nodes)
-    {
-        // to do
-    }
-    
-
 }
