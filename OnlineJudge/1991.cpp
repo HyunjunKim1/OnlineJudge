@@ -1,6 +1,8 @@
 #include <iostream>
 #define MAX 26
 
+// 맥북 깃 설치 Test Push
+
 using namespace std;
 
 int N;
