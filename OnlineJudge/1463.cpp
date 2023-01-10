@@ -12,11 +12,10 @@ int main()
 
 	cin >> N;
 
-	int i = 1;
-	while (i++ < MAX)
+	for (int i = 2; i <= N; i++)
 	{
 		dp[i] = dp[i - 1] + 1;
-		
+
 		if (i % 2 == 0)
 		{
 			if (dp[i] >= dp[i / 2] + 1)
