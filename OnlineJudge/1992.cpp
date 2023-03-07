@@ -5,33 +5,33 @@ string s;
 int N;
 int video[64][64];
 
-void solve(int x, int y, int size)
+void solve(int y, int x, int size)
 {
-	for (int i = x; i < x + size; i++)
-		for (int j = y; j < y + size; j++)
+	for (int i = y; i < y + size; i++)
+		for (int j = x; j < x + size; j++)
 		{
-			if (video[i][j] != video[x][y])
+			if (video[i][j] != video[y][x])
 			{
 				cout << "(";
-				solve(x, y, size / 2);
-				solve(x, y + size / 2, size / 2);
-				solve(x + size / 2, y, size / 2);
-				solve(x + size / 2, y + size / 2, size / 2);
+				solve(y, x, size / 2);
+				solve(y, x + size / 2, size / 2);
+				solve(y + size / 2, x, size / 2);
+				solve(y + size / 2, x + size / 2, size / 2);
 				cout << ")";
 				return;
 			}
 		}
-	cout << video[x][y];
+	cout << video[y][x];
 }
 
 int main()
 {
 	cin >> N;
-	for (int i = 0; i < N; i++)
+	for (int y = 0; y < N; y++)
 	{
 		cin >> s;
-		for (int j = 0; j < N; j++)
-			video[i][j] = s[j] - '0';
+		for (int x = 0; x < N; x++)
+			video[y][x] = s[x] - '0';
 	}
 	solve(0, 0, N);
 
