@@ -33,6 +33,10 @@
     <ClCompile Include="1012.cpp">
       <Filter>소스 파일\BackJoon</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="10773.cpp">
+      <Filter>소스 파일</Filter>
     <ClCompile Include="1043.cpp">
       <Filter>소스 파일\BackJoon</Filter>
     </ClCompile>
@@ -167,6 +171,12 @@
     </ClCompile>
     <ClCompile Include="24416.cpp">
       <Filter>소스 파일\BackJoon</Filter>
+    </ClCompile>
+    <ClCompile Include="1992.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2579.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
