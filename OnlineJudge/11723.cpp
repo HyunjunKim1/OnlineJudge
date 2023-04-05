@@ -1,57 +1,61 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 
-    int m;
-    cin >> m;
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
-    string order;
-    int val, BIT = 0; // BIT를 반드시 0으로 초기화 해준다.
-    while (m--)
-    {
-        cin >> order;
-        if (order == "add")
-        {
-            cin >> val;
-            // or 연산자를 통해 val번째 자리수를 1로 채운다.
-            BIT |= (1 << val);
+    string str = "";
+    int M, x;
+    int arr[21] = { 0 };
+
+
+    cin >> M;
+    for (int i = 0; i < M; i++) {
+        cin >> str;
+
+        if (str == "add") {
+            cin >> x;
+            if (arr[x] == 0) {   //없으면
+                arr[x] = 1;
+            }
         }
-        else if (order == "remove")
-        {
-            cin >> val;
-            // ex) 1000 & ~(1000) = 0000
-            BIT &= ~(1 << val);
+
+        else if (str == "remove") {
+            cin >> x;
+            if (arr[x] == 1) {  //있으면
+                arr[x] = 0;
+            }
+
         }
-        else if (order == "check")
-        {
-            cin >> val;
-            if (BIT & (1 << val))
-                cout << 1 << '\n';
-            else
-                cout << 0 << '\n';
+        else if (str == "check") {
+            cin >> x;
+            if (arr[x] == 0) {   //없으면
+                cout << "0\n";
+            }
+            else {
+                cout << "1\n";
+            }
         }
-        else if (order == "toggle")
-        {
-            cin >> val;
-            // BIT의 val번째 자리가 1이라면 1^1=0이 되어 1->0이 되고
-            // val번째 자리가 0이라면 0^1=1 이 되어 0 -> 1이 된다.
-            BIT ^= (1 << val);
+        else if (str == "toggle") {
+            cin >> x;
+            if (arr[x] == 1) {  //있으면
+                arr[x] = 0;
+            }
+            else {
+                arr[x] = 1;
+            }
         }
-        else if (order == "all")
-        {
-            // ex) 10000 - 1 = 1111
-            BIT = (1 << 21) - 1;
+        else if (str == "all") {
+
+            for (int k = 1; k <= 20; k++) { arr[k] = 1; }
+
         }
-        else if (order == "empty")
-        {
-            BIT = 0;
+        else if (str == "empty") {
+            memset(arr, 0, sizeof(arr));
         }
     }
 
