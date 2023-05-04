@@ -151,30 +151,84 @@
     <ClCompile Include="24416.cpp">
       <Filter>Backjoon</Filter>
     </ClCompile>
-    <ClCompile Include="1874.cpp" />
-    <ClCompile Include="1436.cpp" />
-    <ClCompile Include="2667.cpp" />
-    <ClCompile Include="11723.cpp" />
-    <ClCompile Include="2630.cpp" />
-    <ClCompile Include="9095.cpp" />
-    <ClCompile Include="11279.cpp" />
-    <ClCompile Include="2630_1.cpp" />
-    <ClCompile Include="7576.cpp" />
-    <ClCompile Include="11724.cpp" />
-    <ClCompile Include="18870.cpp" />
-    <ClCompile Include="11726.cpp" />
-    <ClCompile Include="2667-1.cpp" />
-    <ClCompile Include="9375.cpp" />
-    <ClCompile Include="17626.cpp" />
-    <ClCompile Include="17219.cpp" />
-    <ClCompile Include="7576_1.cpp" />
-    <ClCompile Include="1620_1.cpp" />
-    <ClCompile Include="5430.cpp" />
-    <ClCompile Include="5525.cpp" />
-    <ClCompile Include="9461.cpp" />
-    <ClCompile Include="11403.cpp" />
-    <ClCompile Include="2805.cpp" />
-    <ClCompile Include="18111.cpp" />
+    <ClCompile Include="1436.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="1620_1.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="1874.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="2630.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="2630_1.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="2667.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="2667-1.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="2805.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="5430.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="5525.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="7576.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="7576_1.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="9095.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="9375.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="9461.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="11279.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="11403.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="11723.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="11724.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="11726.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="17219.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="17626.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="18111.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="18870.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="COS_PRO_1급1차_1.cpp">
+      <Filter>GroomEdu</Filter>
+    </ClCompile>
+    <ClCompile Include="6064.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backjoon">
