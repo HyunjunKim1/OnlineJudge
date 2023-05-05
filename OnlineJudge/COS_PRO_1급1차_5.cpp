@@ -6,36 +6,40 @@
 using namespace std;
 
 int solution(int n) {
-    vector<vector<int>> arr(n, vector<int>(n));
+    int dx[4] = { 0, 1, 0, -1 };
+    int dy[4] = { 1, 0, -1, 0 };
+    int x = 0; int y = -1;
 
-    int cnt = 1;
-    int row = 0, col = 0;
-    int d_row = 1, d_col = 0;
+    vector<vector<int>> v(n, vector<int>(n));
 
-    for (int i = 0; i < n * n; i++) {
-        arr[row][col] = cnt++;
-        int next_row = row + d_row;
-        int next_col = col + d_col;
+    int dir = 0;
+    int num = 0;
+    int size = n;
+    // 1 1 -1 -1 1
+    // 3 2 2 1 1
+    // 4 3 3 2 2 1 1
+    // 5 4 4 3 3 2 2 1 1 
+    //while (c_dir < ((n - 1) * 2) + 1)
+    while(num < n*n)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            x += dx[dir];
+            y += dy[dir];
+            num++;
 
-        if (next_row < 0 || next_row >= n || next_col < 0 || next_col >= n || arr[next_row][next_col] != 0) {
-            int tmp = d_row;
-            d_row = d_col;
-            d_col = -tmp;
+            v[x][y] = num;
         }
-
-        row += d_row;
-        col += d_col;
+        dir = (dir + 1) % 4;
+        if (dir % 2)
+            size -= 1;
     }
 
     int answer = 0;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (i == j)
-                answer += arr[i][j];
-        }
-    }
 
-	return answer;
+    for (int i = 0; i < n; i++)
+        answer += v[i][i];
+    return answer;
 }
 
 int main() {
