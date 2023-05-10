@@ -250,6 +250,12 @@
     <ClCompile Include="COS_PRO_1급1차_8.cpp">
       <Filter>GroomEdu</Filter>
     </ClCompile>
+    <ClCompile Include="COS_PRO_1급1차_9.cpp">
+      <Filter>GroomEdu</Filter>
+    </ClCompile>
+    <ClCompile Include="16928.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backjoon">
