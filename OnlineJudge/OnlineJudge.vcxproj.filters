@@ -268,6 +268,7 @@
     <ClCompile Include="11659.cpp" />
     <ClCompile Include="11725.cpp" />
     <ClCompile Include="1654.cpp" />
+    <ClCompile Include="1929.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backjoon">
