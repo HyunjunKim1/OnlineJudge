@@ -54,7 +54,8 @@ void bfs(int a, int b, bool visit[][22], int shSize) {
 }
 int main() {
     cin >> n;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {modoo
+
         for (int j = 0; j < n; j++) {
             cin >> map[i][j];
             if (map[i][j] == 9) {

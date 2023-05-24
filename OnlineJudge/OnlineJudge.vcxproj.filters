@@ -265,10 +265,21 @@
     <ClCompile Include="14500.cpp">
       <Filter>Backjoon</Filter>
     </ClCompile>
-    <ClCompile Include="11659.cpp" />
-    <ClCompile Include="11725.cpp" />
-    <ClCompile Include="1654.cpp" />
-    <ClCompile Include="1929.cpp" />
+    <ClCompile Include="11725.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="11659.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="10845.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="1929.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
+    <ClCompile Include="1654.cpp">
+      <Filter>Backjoon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Backjoon">
