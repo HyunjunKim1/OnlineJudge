@@ -8,7 +8,7 @@
 #        break;
 #    result -= B
 #    
-#print(cnt#########)
+#print(cnt)
 
 A, B, V = map(int, input().split())
 
