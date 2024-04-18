@@ -10,7 +10,6 @@ using namespace std;
 int V, E, K;
 int minVal[NODE_MAX];
 
-// pair <가중치, 도착노드>
 vector<pair<int, int>> vec[VERTEX_MAX];
 priority_queue<pair<int, int>> pq;
 
@@ -18,7 +17,6 @@ void Dijkstra(int idx)
 {
 	int NowIdx = 0;
 	int weight = 0;
-	// 자기 자신으로 가는 가중치는 없음.
 	minVal[idx] = 0;
 
 	pq.push(make_pair(0, idx));
@@ -50,7 +48,6 @@ void Dijkstra(int idx)
 
 int main()
 {
-	// 시작노드, 도착노드, 가중치
 	int u, v, w;
 
 	ios::sync_with_stdio(false);
@@ -65,7 +62,6 @@ int main()
 	{
 		cin >> u >> v >> w;
 
-		//시작노트 vec에 도착노드로 가는 가중치를 같이 저장
 		vec[u].push_back(make_pair(w, v));
 	}
 
