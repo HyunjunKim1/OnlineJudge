@@ -1,43 +1,35 @@
-import sys
 import heapq
+import sys
+input = sys.stdin.readline
+INF = int(1e9)
 
-def dijkstra(graph, start):
-    distances = {node: float('inf') for node in graph}
-    distances[start] = 0
-    queue = []
-    heapq.heappush(queue, [distances[start], start])
-
-    while queue:
-        current_distance, current_node = heapq.heappop(queue)
-
-        if distances[current_node] < current_distance:
+def dijkstra(start):
+    q = []
+    heapq.heappush(q, (0, start))
+    distance[start] = 0
+    while q:
+        dist, now = heapq.heappop(q)
+        if distance[now] < dist:
             continue
-
-        for adjacent, weight in graph[current_node].items():
-            distance = current_distance + weight
-
-            if distance < distances[adjacent]:
-                distances[adjacent] = distance
-                heapq.heappush(queue, [distance, adjacent])
-
-    return distances
+        for i in graph[now]:
+            cost = dist + i[1]
+            if cost < distance[i[0]]:
+                distance[i[0]] = cost
+                heapq.heappush(q, (cost, i[0]))
 
 V, E = map(int, input().split())
 start = int(input())
-graph = {i: {} for i in range(1, V+1)}
-
+graph = [[] for i in range(V + 1)]
+distance = [INF] * (V + 1)
 
 for _ in range(E):
     u, v, w = map(int, input().split())
-    if v in graph[u]:
-        graph[u][v] = min(graph[u][v], w)
-    else:
-        graph[u][v] = w
+    graph[u].append((v, w))
 
-distances = dijkstra(graph, start)
+dijkstra(start)
 
 for i in range(1, V+1):
-    if distances[i] == float('inf'):
-        print('INF')
+    if distance[i] == INF:
+        print("INF")
     else:
-        print(distances[i])
+        print(distance[i])
