@@ -1,30 +1,39 @@
 from collections import deque
 
-def DFS(M,V,Visited):
-    Visited[V] = True
-    print(V, end = ' ')
-    for i in Vertax[V]:
-        if not Visited[i]:
-            DFS(M,i,Visited)
+def dfs(start):
+    isVisit[start] = True
+    print(start, end = " ")
+    for i in vertax[start]:
+        if not isVisit[i]:
+            dfs(i)
 
-def BFS(M, V, Visited):
-    queue = deque([V])
-    Visited[V] = True
+def bfs(start):
+    queue = deque([start])
+    isVisit[start] = True
     
     while queue:
-        V = queue.popleft()
-        print(V, end=' ')
-        for i in Vertax[V]:
-            if not Visited[i]:
+        v = queue.popleft()
+        print(v, end = " ")
+        for i in vertax:
+            if not isVisit[i]:
+                isVisit[i] = True
                 queue.append(i)
-                Visited[i] = True
-        
+    
+
 N, M, V = map(int, input().split())
-Vertax = [[]]
-isVisited = [False] * N
+
+vertax = [[] for _ in range(N + 1)]
 
 for _ in range(M):
-    Vertax.append([map(int,input().split())])
+    a, b = map(int,input().split())
+    vertax[a].append(b)
+    vertax[b].append(a)
 
-DFS(M,V,isVisited)
-BFS(M,V,isVisited)
+for i in vertax:
+    i.sort()
+    
+isVisit = [False] * (N + 1)
+dfs(V)
+
+isVisit = [False] * (N + 1)
+bfs(V)
