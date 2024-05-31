@@ -1,4 +1,8 @@
-N,M = map(int, input().split())
+import sys
+
+sys.setrecursionlimit(5000)
+
+N,M = map(int, sys.stdin.readline().split())
 
 def dfs(start):
     isVisit[start] = True
@@ -8,7 +12,7 @@ def dfs(start):
     
 graph = [[] for _ in range(N + 1)]
 for _ in range(M):
-    u, v = map(int, input().split())
+    u, v = map(int, sys.stdin.readline().split())
     graph[u].append(v)
     graph[v].append(u)
 
