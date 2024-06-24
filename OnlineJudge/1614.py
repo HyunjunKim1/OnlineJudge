@@ -17,7 +17,6 @@ elif hurtFinger == 5:
     else:
         answer += 4 + 8*(maxRepeat)
 
-
 # else hurtfinger is 2,3,4
 else:
     if maxRepeat == 0:
