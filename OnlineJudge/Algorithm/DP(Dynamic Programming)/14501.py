@@ -13,3 +13,4 @@ for i in range(len(T)-2, -1, -1):
     else:                 
         dp[i] = dp[i+1]
 print(dp[0])
+
